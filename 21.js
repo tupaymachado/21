@@ -19,6 +19,12 @@ let endMessage = document.querySelector('.modal-body')
 let modal = document.querySelector(".modal")
 let dealerHide = document.querySelector('#dealer-hide')
 let dealerDeck = document.querySelector('#dealer-deck')
+let initial = document.querySelector("#initial-round")
+let startBtn = document.querySelector("#btn-start")
+let betRound = document.querySelector("#bet-round")
+let playBtn = document.querySelector("#play-btn")
+let playRound = document.querySelector("#play-round")
+
 //Código para o jogo e cartas
 function sacarCarta(mao) {
     let valor = valores[Math.floor(Math.random() * 13)] //perpassa pelos dois arrays para criar um outro array com valor e naipe
@@ -69,23 +75,20 @@ function somar(mao) {
             somaCartas = somaCartas + Number(mao[i][0])
         }
     }
-    //serve para determinar se o ás vale 1 ou vale 11; se existe ás na mão e a soma das cartas for maior que 21, ele diminui 10 da soma total
-    for (let i = 1; i < mao.length; i++) {
+    for (let i = 1; i < mao.length; i++) {  //serve para determinar se o ás vale 1 ou vale 11; se existe ás na mão e a soma das cartas for maior que 21, ele diminui 10 da soma total
         if (somaCartas > 21 && mao[i][0] == 'a') {
             somaCartas = somaCartas - 10
             break //evita que diminua 20 caso encontre dois ás, já que vai sair do loop assim que encontrar o primeiro
         }
-    }
-    //mostra a soma das cartas no contador, definindo se aparece no player ou no dealer
-    if (mao[0] == 'dealer') {
+    }    
+    if (mao[0] == 'dealer') { //mostra a soma das cartas no contador, definindo se aparece no player ou no dealer
         dealerCounter.innerHTML = somaCartas
         somaDealer = somaCartas //atualiza a variável que será usada para comparação
     } else {
         playerCounter.innerHTML = somaCartas
         somaPlayer = somaCartas
     }
-    //desliga o botão hit quando o total do player iguala ou passa de 21
-    if (mao[0] == 'player' && somaCartas >= 21) {
+    if (mao[0] == 'player' && somaCartas >= 21) {//desliga o botão hit quando o total do player iguala ou passa de 21
         hitBtn.disabled = true
     }
 }
@@ -137,7 +140,7 @@ function endGame() { //chama modal do fim do jogo, mostra vencedor e reseta vari
 const betBox = document.querySelector(".bet-box-value")
 let wallet = document.querySelector("#wallet")
 const betForm = document.querySelector("#bet-form")
-let bet = 0 //valor da aposta, vai na bet box
+let bet = 0
 let moneyInitial = 500
 let money
 wallet.innerHTML = moneyInitial
@@ -162,12 +165,6 @@ function setBet() {
 }
 
 //Código do layout
-const initial = document.querySelector("#initial-round")
-const startBtn = document.querySelector("#btn-start")
-const betRound = document.querySelector("#bet-round")
-const playBtn = document.querySelector("#play-btn")
-const playRound = document.querySelector("#play-round")
-
 startBtn.addEventListener("click", function () { //some a primeira tela e mostra a segunda
     setTimeout(() => initial.classList.add("hidden"), 300);
     setTimeout(() => betRound.classList.remove('hidden', 'hide'), 1500)
@@ -192,7 +189,6 @@ playBtn.addEventListener("click", function () { //some a segunda tela, mostra a 
 });
 
 //Reset function
-
 function reset() {
     modal.classList.remove("show")
     modal.style.display = "none"
