@@ -19,7 +19,6 @@ let endMessage = document.querySelector('.modal-body')
 let modal = document.querySelector(".modal")
 let dealerHide = document.querySelector('#dealer-hide')
 let dealerDeck = document.querySelector('#dealer-deck')
-
 //Código para o jogo e cartas
 function sacarCarta(mao) {
     let valor = valores[Math.floor(Math.random() * 13)] //perpassa pelos dois arrays para criar um outro array com valor e naipe
@@ -44,9 +43,7 @@ function sacarCarta(mao) {
     if (somaPlayer >= 21) {
         hitBtn.disabled = true
         standBtn.disabled = true
-        setTimeout(() => {
-            sacarCarta
-        }, 500, ); //COMO PASSO ESSE MALDITO PARÂMETRO PRA FUNÇÃO?? NADA FUNCIONA!
+        sacarCarta(maoDealer)
         setTimeout(() => {
             endGame
         }, 1500);
