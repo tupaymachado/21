@@ -88,8 +88,13 @@ function somar(mao) {
         playerCounter.innerHTML = somaCartas
         somaPlayer = somaCartas
     }
-    if (mao[0] == 'player' && somaCartas >= 21) {//desliga o botão hit quando o total do player iguala ou passa de 21
+    if (mao[0] == 'player' && somaCartas >= 21) {//desliga o botão hit quando o total do player iguala ou passa de 21, e começa a finalizar o jogo
         hitBtn.disabled = true
+        standBtn.disabled = true
+        sacarCarta(maoDealer)
+        setTimeout(() => {
+                endGame
+            }, 1500);
     }
 }
 
@@ -170,8 +175,6 @@ startBtn.addEventListener("click", function () { //some a primeira tela e mostra
     setTimeout(() => betRound.classList.remove('hidden', 'hide'), 1500)
     setTimeout(() => initial.style.display = "none", 1500)
 });
-
-//
 
 playBtn.addEventListener("click", function () { //some a segunda tela, mostra a segunda e chama as cartas iniciais
     if (bet == 0) { //avisa caso o player não tenha feito nenhuma aposta

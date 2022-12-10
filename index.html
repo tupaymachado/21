@@ -20,10 +20,11 @@
             <div class="container-fluid py-4 box-layout">
                 <p class="text-center">Bem-vindo(a) à mesa de 21!</p>
                 <ul class="">
-                    <li>Para saber mais sobre o jogo, acesse: ##########</li>
+                    <li>Para saber mais sobre o jogo, acesse: <a
+                            href="https://pt.wikipedia.org/wiki/Blackjack">BlackJack</a></li>
                     <li>A mesa usa apenas 1 deck de cartas</li>
                     <li>O dealer sempre bate no 17</li>
-                    <li>A mesa conta com double down, split e insurance</li>
+                    <li>Double down, insurance e split ainda não foram implementados</li>
                 </ul>
                 <p class="text-center">Divirta-se!</p>
                 <button class="btn btn-primary d-block mx-auto" id="btn-start">Começar</button>
@@ -53,7 +54,7 @@
 
             <!-- money -->
             <div class="container box-layout my-3">
-                
+
                 <!-- wallet -->
                 <div class="row my-2 pt-2">
                     <div class="col d-flex justify-content-center align-items-center">
@@ -83,7 +84,7 @@
 
     <!-- play round-->
     <div class="container hide" id="play-round">
-
+        
         <!-- Dealer cards-->
         <div id="dealer-side">
             <div class="row">
@@ -121,36 +122,25 @@
         </div>
 
         <!-- menu-->
-        <div class="box-layout row d-flex justify-content-center align-items-center mt-3" style="height: 90px;">
-            <div class="col-2 hide" id="insurance">
-                <div class="d-flex align-items-center justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="Insurance">
-                </div>
+        <div class="box-layout row d-flex justify-content-around align-items-center mt-3" style="height: 90px;">
+<!--             <div class="col-2 d-flex align-items-center justify-content-center" id="insurance">
+                <input type="submit" class="btn btn-primary" value="Insurance">
             </div>
-            <div class="col-2 hide" id="split">
-                <div class="d-flex align-items-center justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="Split">
-                </div>
+            <div class="col-2 d-flex align-items-center justify-content-center" id="split">
+                <input type="submit" class="btn btn-primary" value="Split">
+            </div> -->
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                <input type="submit" class="btn btn-primary" value="Double">
             </div>
-            <div class="col-2">
-                <div class="d-flex align-items-center justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="Double">
-                </div>
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                <input type="submit" class="btn btn-primary" value="Hit" id="hit" onclick="sacarCarta(maoPlayer)">
             </div>
-            <div class="col-2">
-                <div class="d-flex align-items-center justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="Hit" id="hit" onclick="sacarCarta(maoPlayer)">
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="d-flex align-items-center justify-content-center">
-                    <input type="button" class="btn btn-primary" value="Stand" id="stand" onclick="stand()">
-                </div>
+            <div class="col-2 d-flex align-items-center justify-content-center">
+                <input type="button" class="btn btn-primary" value="Stand" id="stand" onclick="stand()">
             </div>
         </div>
 
         <!-- round-end card-->
-        <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

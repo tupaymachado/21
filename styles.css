@@ -26,7 +26,7 @@ body {
 }
 
 .cards {
-    height: 11em;
+    height: 10em;
 }
 
 .bet-box {
@@ -35,9 +35,6 @@ body {
     border: solid 5px #D4C925
 }
 
-#round-end {
-    z-index: 99;
-    position: fixed;
-    top: 220px;
-    left: 160px;
+#split {
+    display: none;
 }
