@@ -40,14 +40,6 @@ function sacarCarta(mao) {
     mao.push(carta)
     cartasFora.push(carta)
     mostrarCarta(mao, carta) //chama a próxima função, para criar o elemento <img> da carta no HTML
-    if (somaPlayer >= 21) {
-        hitBtn.disabled = true
-        standBtn.disabled = true
-        sacarCarta(maoDealer)
-        setTimeout(() => {
-            endGame
-        }, 1500);
-    }
 }
 
 function mostrarCarta(mao, carta) {
