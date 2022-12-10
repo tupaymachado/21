@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link href="styles.css" rel="stylesheet">
+    <title>BlackJack</title>
+</head>
+
+<body>
+    <!--     Página inicial -->
+    <div class="container" id="initial-round">
+        <div class="container vh-100 d-flex align-items-center">
+            <div class="container-fluid py-4 box-layout">
+                <p class="text-center">Bem-vindo(a) à mesa de 21!</p>
+                <ul class="">
+                    <li>Para saber mais sobre o jogo, acesse: ##########</li>
+                    <li>A mesa usa apenas 1 deck de cartas</li>
+                    <li>O dealer sempre bate no 17</li>
+                    <li>A mesa conta com double down, split e insurance</li>
+                </ul>
+                <p class="text-center">Divirta-se!</p>
+                <button class="btn btn-primary d-block mx-auto" id="btn-start">Começar</button>
+            </div>
+        </div>
+    </div>
+
+    <!--     bets -->
+    <div class="container hidden hide" id="bet-round">
+        <div class="container vh-100 d-flex flex-column justify-content-evenly">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <img src="cards/back01.svg" class="cards my-3">
+                </div>
+            </div>
+
+            <!-- bet-box -->
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="bet-box my-1 d-flex align-items-center justify-content-center text-white fw-bold">
+                        <p class="bet-value my-auto fs-6">
+                            $: <span class="bet-box-value"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- money -->
+            <div class="container box-layout my-3">
+                
+                <!-- wallet -->
+                <div class="row my-2 pt-2">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <span>Your wallet: $</span>
+                        <span id="wallet"></span>
+                    </div>
+                </div>
+
+                <!-- bet form -->
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="form-floating col-9 px-0">
+                        <input type="number" class="form-control" id="bet-form" placeholder="How much you want to bet?"
+                            min="1" max="500.00" step="1" required>
+                        <label for="bet-form">Min $ 1,00 / Max $ 500,00</label>
+                    </div>
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <input type="submit" class="col-9 btn btn-primary btn-lg mt-2 mb-2" value="Bet"
+                            onclick="setBet()">
+                    </div>
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <input type="submit" class="col-9 btn btn-primary btn-lg mt-2 mb-2" value="Play" id="play-btn">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- play round-->
+    <div class="container hide" id="play-round">
+
+        <!-- Dealer cards-->
+        <div id="dealer-side">
+            <div class="row">
+                <div class="col d-flex justify-content-center mt-5 mb-2" id="dealer-deck">
+                    <img src="cards/back01.svg" class="cards mx-1" id="dealer-hide">
+                </div>
+            </div>
+            <div class="mx-auto box-layout text-center mb-1" style="width:150px">
+                <span>Total dealer: </span>
+                <span id="dealer-counter"></span>
+            </div>
+        </div>
+
+        <!-- Player cards-->
+        <div id="player-side mt-1">
+            <div class="row">
+                <div class="col d-flex justify-content-center mt-5 mb-2" id="player-deck">
+                </div>
+            </div>
+            <div class="mx-auto box-layout text-center mb-3" style="width:150px">
+                <span>Total player: </span>
+                <span id="player-counter"></span>
+            </div>
+        </div>
+
+        <!-- bet-box -->
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <div class="bet-box my-1 d-flex align-items-center justify-content-center text-white fw-bold">
+                    <p class="bet-value my-auto fs-6">
+                        $: <span id="bet-box-value-play"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- menu-->
+        <div class="box-layout row d-flex justify-content-center align-items-center mt-3" style="height: 90px;">
+            <div class="col-2 hide" id="insurance">
+                <div class="d-flex align-items-center justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Insurance">
+                </div>
+            </div>
+            <div class="col-2 hide" id="split">
+                <div class="d-flex align-items-center justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Split">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex align-items-center justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Double">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex align-items-center justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Hit" id="hit" onclick="sacarCarta(maoPlayer)">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex align-items-center justify-content-center">
+                    <input type="button" class="btn btn-primary" value="Stand" id="stand" onclick="stand()">
+                </div>
+            </div>
+        </div>
+
+        <!-- round-end card-->
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Round end</h1>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="reset()">Another one!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="21.js"></script>
+</body>
+
+</html>

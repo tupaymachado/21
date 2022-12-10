@@ -1,0 +1,43 @@
+body {
+    background-color: #165D41;
+}
+
+.container {
+    max-width: 600px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.box-layout {    
+    background-color: #d9d9d9;
+    border-radius: .5em;
+}
+
+.cards {
+    height: 11em;
+}
+
+.bet-box {
+    width: 90px;
+    height: 90px;
+    border: solid 5px #D4C925
+}
+
+#round-end {
+    z-index: 99;
+    position: fixed;
+    top: 220px;
+    left: 160px;
+}
