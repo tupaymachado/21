@@ -93,7 +93,7 @@ function somar(mao) {
         standBtn.disabled = true
         sacarCarta(maoDealer)
         setTimeout(() => {
-                endGame
+                endGame()
             }, 1500);
     }
 }
