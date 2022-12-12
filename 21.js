@@ -94,7 +94,7 @@ function somar(mao) {
         sacarCarta(maoDealer)
         setTimeout(() => {
                 endGame()
-            }, 1500);
+            }, 500);
     }
 }
 
@@ -195,9 +195,9 @@ playBtn.addEventListener("click", function () { //some a segunda tela, mostra a 
 function reset() {
     modal.classList.remove("show")
     modal.style.display = "none"
-    setTimeout(() => playRound.classList.add('hidden'), 1500)
+    setTimeout(() => playRound.classList.add('hidden'), 300)
+    setTimeout(() => betRound.classList.remove('hidden'), 500)
     setTimeout(() => playRound.classList.add('hide'), 1500)
-    setTimeout(() => betRound.classList.remove('hidden'), 1500)
     setTimeout(() => betRound.style.display = "block", 1500)
     betBox.innerHTML = 0 //reseta variáveis mudadas na rodada anterior
     bet = 0
