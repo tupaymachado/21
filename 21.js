@@ -92,9 +92,10 @@ function somar(mao) {
         hitBtn.disabled = true
         standBtn.disabled = true
         sacarCarta(maoDealer)
+        dealerHide.parentNode.removeChild(dealerHide) //exclui carta virada pra baixo
         setTimeout(() => {
                 endGame()
-            }, 500);
+            }, 1000);
     }
 }
 
